@@ -22,3 +22,4 @@ require __DIR__.'/auth.php';
 Route::prefix('home')->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 });
+
