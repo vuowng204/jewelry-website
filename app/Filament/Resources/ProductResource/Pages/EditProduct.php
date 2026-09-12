@@ -26,21 +26,27 @@ class EditProduct extends EditRecord
 
     protected function afterSave(): void
     {
-        $gallery = $this->data['gallery'] ?? [];
+        // Ép mảng về dạng index số nguyên 0, 1, 2...
+       $gallery = array_values($this->data['gallery'] ?? []);
 
-        // Xóa ảnh cũ không còn trong danh sách
-        $oldPaths = $this->record->images()->pluck('path')->toArray();
-        $removed = array_diff($oldPaths, $gallery);
-        foreach ($removed as $path) {
-            Storage::disk('public')->delete($path);
+        // 1. Lấy danh sách đường dẫn ảnh cũ trong DB
+        $oldImages = $this->record->images()->pluck('path', 'id')->toArray();
+
+        // 2. Tìm và xóa file thực tế của những ảnh bị gỡ ra khỏi form
+        $removedPaths = array_diff($oldImages, $gallery);
+        if (!empty($removedPaths)) {
+            foreach ($removedPaths as $path) {
+                Storage::disk('public')->delete($path);
+            }
         }
 
-        // Xóa record cũ, tạo lại theo gallery mới
+        // 3. Xóa các record cũ trong DB và tạo lại theo thứ tự mới
         $this->record->images()->delete();
+
         foreach ($gallery as $index => $path) {
             $this->record->images()->create([
-                'path' => $path,
-                'sort_order' => $index,
+                'path'       => $path,
+                'sort_order' => $index + 1,
             ]);
         }
     }
