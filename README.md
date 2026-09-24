@@ -10,7 +10,7 @@
 ## How to install filament
 
 ```bash
-composer require filament/filament:"^3.2"
+composer require filament/filament:"^3.3.55"
 php artisan filament:install --panels
 ```
 ## How to add new AdminUser to Login
