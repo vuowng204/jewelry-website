@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+    <!-- Icon artwork from https://github.com/tabler/tabler-icons/tree/v3.36.0 (MIT). -->
+    <symbol id="menu-2" viewBox="0 0 24 24">
+        <path d="M4 6l16 0" />
+        <path d="M4 12l16 0" />
+        <path d="M4 18l16 0" />
+    </symbol>
+    <symbol id="search" viewBox="0 0 24 24">
+        <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+        <path d="M21 21l-6 -6" />
+    </symbol>
+    <symbol id="user" viewBox="0 0 24 24">
+        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+    </symbol>
+    <symbol id="heart" viewBox="0 0 24 24">
+        <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+    </symbol>
+    <symbol id="shopping-cart" viewBox="0 0 24 24">
+        <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+        <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+        <path d="M17 17h-11v-14h-2" />
+        <path d="M6 5l14 1l-1 7h-13" />
+    </symbol>
+    <symbol id="brand-facebook" viewBox="0 0 24 24">
+        <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
+    </symbol>
+    <symbol id="brand-instagram" viewBox="0 0 24 24">
+        <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z" />
+        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+        <path d="M16.5 7.5v.01" />
+    </symbol>
+</svg>

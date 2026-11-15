@@ -1,26 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Chủ</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2efef;
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-top: 50px;
-        }
-    </style>
-</head>
-<body>
-    <h1>
-        Chào mừng đến với trang chủ của chúng tôi!
-    </h1>
-</body>
-</html>
+@extends('layouts.layoutmaster')
+
+@section('title', 'Trang chủ | Luna Jewelry')
+
+@section('content')
+    <div class="mx-auto flex max-w-7xl items-center justify-center px-6 py-28 text-center">
+        <h1 class="font-storefront-heading text-3xl leading-snug sm:text-4xl sm:leading-snug">Chào mừng đến với Luna Jewelry</h1>
+    </div>
+@endsection
