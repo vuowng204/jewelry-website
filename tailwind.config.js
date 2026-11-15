@@ -13,6 +13,8 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                storefront: ['Inter', ...defaultTheme.fontFamily.sans],
+                'storefront-heading': ['"Playfair Display"', ...defaultTheme.fontFamily.serif],
             },
         },
     },
