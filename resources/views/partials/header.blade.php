@@ -6,7 +6,7 @@
                     <path d="M5 10h22l-11 17L5 10Zm0 0 5-6h12l5 6M10 4l6 23 6-23M5 10h22" />
                 </svg>
             </span>
-            <span class="font-serif text-xl tracking-wide text-white">Luna Jewelry</span>
+            <span class="font-storefront text-xl tracking-wide text-white">Luna Jewelry</span>
         </a>
 
         <div class="order-last flex min-h-10 w-full min-w-0 items-center gap-3 rounded-full bg-[#f7f0ed] px-4 text-[#705d51] focus-within:ring-2 focus-within:ring-[#d6b48a] lg:order-none lg:max-w-xl lg:flex-1" role="search">
