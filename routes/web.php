@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -18,4 +19,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/home', [HomeController::class, 'index']);
+Route::prefix('home')->group(function () {
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+});
+
