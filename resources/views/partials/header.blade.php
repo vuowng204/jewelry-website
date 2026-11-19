@@ -1,37 +1,52 @@
 <header class="bg-[#342821] text-[#faf5ee]">
-    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-3 gap-y-4 px-5 py-4 sm:gap-x-6 lg:flex-nowrap lg:gap-x-10 lg:px-8">
-        <a class="flex shrink-0 items-center gap-3" href="{{ route('home.index') }}" aria-label="Luna Jewelry - Trang chủ">
-            <span class="flex h-10 w-10 items-center justify-center bg-white text-[#ae9270]" aria-hidden="true">
-                <svg class="h-7 w-7" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-4 px-5 py-4 lg:flex-nowrap lg:px-8">
+        <div class="flex shrink-0 items-center gap-3">
+            <span class="flex h-9 w-9 items-center justify-center border border-[#a88350]/60 text-[#e2cbb0]" aria-hidden="true">
+                <svg class="h-5 w-5" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3">
                     <path d="M5 10h22l-11 17L5 10Zm0 0 5-6h12l5 6M10 4l6 23 6-23M5 10h22" />
                 </svg>
             </span>
-            <span class="font-storefront text-xl tracking-wide text-white">Luna Jewelry</span>
-        </a>
-
-        <div class="order-last flex min-h-10 w-full min-w-0 items-center gap-3 rounded-full bg-[#f7f0ed] px-4 text-[#705d51] focus-within:ring-2 focus-within:ring-[#d6b48a] lg:order-none lg:max-w-xl lg:flex-1" role="search">
-            <x-storefront-icon name="menu-2" class="h-4 w-4 shrink-0" />
-            <input class="min-w-0 flex-1 border-0 bg-transparent p-0 text-base text-[#342821] placeholder:text-[#705d51] focus:ring-0 sm:text-sm" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Tìm kiếm sản phẩm">
-            <x-storefront-icon name="search" class="h-5 w-5 shrink-0" />
+            <span class="flex flex-col leading-none">
+                <span class="font-storefront-heading text-xl tracking-[0.08em] text-[#faf5ee]">Luna Jewelry</span>
+            </span>
         </div>
 
-        <div class="flex shrink-0 items-center gap-3 text-[#e2cbb0] sm:gap-5" role="group" aria-label="Tài khoản và mua sắm">
-            <a class="flex h-10 w-9 items-center justify-center rounded hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#e2cbb0]" href="{{ auth()->check() ? route('profile.edit') : route('login') }}" aria-label="Tài khoản" title="Tài khoản">
-                <x-storefront-icon name="user" class="h-6 w-6" />
+        <form action="{{ route('products.index') }}" method="GET" class="order-last flex w-full min-w-0 items-center gap-2.5 border-b border-[#6d5848] pb-1.5 text-[#c7b5a3] transition focus-within:border-[#d6b48a] lg:order-none lg:max-w-md lg:flex-1" role="search">
+            <input
+                class="min-w-0 flex-1 border-0 bg-transparent p-0 text-sm text-[#faf5ee] placeholder:text-[#a89686] focus:ring-0"
+                type="search"
+                name="q"
+                value="{{ request('q') }}"
+                placeholder="Tìm kiếm trang sức..."
+                aria-label="Tìm kiếm sản phẩm"
+            >
+            <button type="submit" class="flex items-center justify-center text-[#d6b48a] transition hover:text-white" aria-label="Tìm kiếm">
+                <x-storefront-icon name="search" class="h-4 w-4 shrink-0" />
+            </button>
+        </form>
+
+        <div class="flex shrink-0 items-center gap-4 text-[#e2cbb0]" role="group" aria-label="Tài khoản và mua sắm">
+            <a class="flex h-9 w-9 items-center justify-center transition hover:text-white focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#e2cbb0]" href="{{ auth()->check() ? route('profile.edit') : route('login') }}" aria-label="Tài khoản" title="Tài khoản">
+                <x-storefront-icon name="user" class="h-5 w-5" />
             </a>
-            <span role="img" aria-label="Yêu thích" title="Yêu thích">
-                <x-storefront-icon name="heart" class="h-6 w-6" />
-            </span>
-            <span role="img" aria-label="Giỏ hàng" title="Giỏ hàng">
-                <x-storefront-icon name="shopping-cart" class="h-6 w-6" />
+            <span class="flex h-9 w-9 items-center justify-center" role="img" aria-label="Giỏ hàng" title="Giỏ hàng">
+                <x-storefront-icon name="shopping-cart" class="h-5 w-5" />
             </span>
         </div>
     </div>
 
-    <nav class="mx-auto flex max-w-7xl flex-wrap justify-center gap-2 px-5 pb-3 text-center text-sm font-medium leading-5 text-[#342821] sm:justify-between sm:gap-4 lg:px-8" aria-label="Danh mục chính">
-        <a class="rounded bg-[#e8d1b4] px-3 py-2 hover:bg-[#f0dbc0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:min-w-[7rem]" href="{{ route('home.index') }}" @if (request()->routeIs('home.index')) aria-current="page" @endif>Trang chủ</a>
-        @foreach (['Sản phẩm', 'Nhẫn · Dây', 'Vòng tay', 'Bông tai'] as $category)
-            <span class="rounded bg-[#f6eee5] px-3 py-2 sm:min-w-[7rem]">{{ $category }}</span>
-        @endforeach
-    </nav>
+    <div>
+        <nav class="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-5 text-xs uppercase tracking-[0.16em] lg:px-8" aria-label="Danh mục chính">
+            <a
+                class="border-b-2 py-3.5 transition {{ request()->routeIs('home.index') ? 'border-[#c7a36b] text-white' : 'border-transparent text-[#d8c8b8] hover:text-white' }}"
+                href="{{ route('home.index') }}"
+                @if (request()->routeIs('home.index')) aria-current="page" @endif
+            >Trang chủ</a>
+            <a
+                class="border-b-2 py-3.5 transition {{ request()->routeIs('products.*') ? 'border-[#c7a36b] text-white' : 'border-transparent text-[#d8c8b8] hover:text-white' }}"
+                href="{{ route('products.index') }}"
+                @if (request()->routeIs('products.*')) aria-current="page" @endif
+            >Sản phẩm</a>
+        </nav>
+    </div>
 </header>
