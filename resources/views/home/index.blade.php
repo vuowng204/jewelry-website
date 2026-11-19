@@ -19,10 +19,6 @@
                 <p class="mt-3 max-w-md text-xs leading-relaxed text-[#493c31] sm:text-sm">
                     Luna là hiện thân của sự tinh tế, nơi mỗi món trang sức không chỉ là phụ kiện, mà còn là câu chuyện về cảm xúc, phong cách và những khoảnh khắc đáng nhớ.
                 </p>
-                <a class="mt-5 inline-flex items-center gap-2 bg-[#a88350] px-4 py-3 text-xs font-medium text-white transition hover:bg-[#8f6e43] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#705638] sm:text-sm" href="#ve-luna">
-                    Khám phá bộ sưu tập
-                    <span aria-hidden="true">→</span>
-                </a>
             </div>
         </div>
     </section>
