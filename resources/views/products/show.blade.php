@@ -128,12 +128,20 @@
 
                     <div class="flex flex-col gap-3 pt-2">
                         @if ($product->stock > 0)
-                            <button
-                                type="button"
-                                class="w-full bg-[#342821] px-6 py-3.5 text-center text-xs font-medium uppercase tracking-[0.16em] text-[#faf5ee] transition hover:bg-[#a88350] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
-                            >
-                                Thêm vào giỏ hàng
-                            </button>
+                            <div class="grid grid-cols-2 gap-3">
+                                <button
+                                    type="button"
+                                    class="w-full border border-[#342821] bg-transparent px-4 py-3.5 text-center text-xs font-medium uppercase tracking-[0.12em] text-[#342821] transition hover:bg-[#342821] hover:text-[#faf5ee] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
+                                >
+                                    Thêm vào giỏ hàng
+                                </button>
+                                <button
+                                    type="button"
+                                    class="w-full bg-[#342821] px-4 py-3.5 text-center text-xs font-medium uppercase tracking-[0.12em] text-[#faf5ee] transition hover:bg-[#a88350] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
+                                >
+                                    Mua ngay
+                                </button>
+                            </div>
                         @else
                             <button
                                 type="button"
@@ -164,7 +172,7 @@
                         @foreach ($relatedProducts as $relatedProduct)
                             <article class="group flex flex-col">
                                 <a
-                                    href="{{ route('products.show', [$relatedProduct->category, $relatedProduct]) }}"
+                                    href="{{ route('products.show', [$category, $relatedProduct]) }}"
                                     class="relative aspect-square w-full overflow-hidden bg-[#f4ece2]"
                                 >
                                     @if ($relatedProduct->thumbnail_url)
@@ -184,17 +192,15 @@
                                 </a>
 
                                 <div class="flex flex-1 flex-col gap-2 pt-4">
-                                    @if ($relatedProduct->category)
-                                        <p class="text-[11px] uppercase tracking-[0.14em] text-[#948374]">
-                                            {{ $relatedProduct->category->name }}
-                                            @if ($relatedProduct->material)
-                                                · {{ $relatedProduct->material }}
-                                            @endif
-                                        </p>
-                                    @endif
+                                    <p class="text-[11px] uppercase tracking-[0.14em] text-[#948374]">
+                                        {{ $category->name }}
+                                        @if ($relatedProduct->material)
+                                            · {{ $relatedProduct->material }}
+                                        @endif
+                                    </p>
 
                                     <h3 class="line-clamp-2 font-storefront-heading text-lg leading-snug text-[#342821]">
-                                        <a href="{{ route('products.show', [$relatedProduct->category, $relatedProduct]) }}" class="transition hover:text-[#a88350] focus-visible:outline-none focus-visible:underline">
+                                        <a href="{{ route('products.show', [$category, $relatedProduct]) }}" class="transition hover:text-[#a88350] focus-visible:outline-none focus-visible:underline">
                                             {{ $relatedProduct->name }}
                                         </a>
                                     </h3>
@@ -212,12 +218,20 @@
 
                                     <div class="mt-auto pt-3">
                                         @if ($relatedProduct->stock > 0)
-                                            <button
-                                                type="button"
-                                                class="w-full bg-[#342821] px-4 py-2.5 text-center text-[11px] font-medium uppercase tracking-[0.14em] text-[#faf5ee] transition hover:bg-[#a88350] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
-                                            >
-                                                Thêm vào giỏ hàng
-                                            </button>
+                                            <div class="grid grid-cols-2 gap-2">
+                                                <button
+                                                    type="button"
+                                                    class="w-full border border-[#342821] bg-transparent px-2 py-2.5 text-center text-[11px] font-medium uppercase tracking-[0.08em] text-[#342821] transition hover:bg-[#342821] hover:text-[#faf5ee] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
+                                                >
+                                                    Thêm giỏ hàng
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="w-full bg-[#342821] px-2 py-2.5 text-center text-[11px] font-medium uppercase tracking-[0.08em] text-[#faf5ee] transition hover:bg-[#a88350] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
+                                                >
+                                                    Mua ngay
+                                                </button>
+                                            </div>
                                         @else
                                             <button
                                                 type="button"
