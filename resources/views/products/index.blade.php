@@ -227,12 +227,20 @@
 
                                         <div class="mt-auto pt-3">
                                             @if ($product->stock > 0)
-                                                <button
-                                                    type="button"
-                                                    class="w-full bg-[#342821] px-4 py-2.5 text-center text-[11px] font-medium uppercase tracking-[0.14em] text-[#faf5ee] transition hover:bg-[#a88350] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
-                                                >
-                                                    Thêm vào giỏ hàng
-                                                </button>
+                                                <div class="grid grid-cols-2 gap-2">
+                                                    <button
+                                                        type="button"
+                                                        class="w-full border border-[#342821] bg-transparent px-2 py-2.5 text-center text-[11px] font-medium uppercase tracking-[0.08em] text-[#342821] transition hover:bg-[#342821] hover:text-[#faf5ee] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
+                                                    >
+                                                        Thêm giỏ hàng
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        class="w-full bg-[#342821] px-2 py-2.5 text-center text-[11px] font-medium uppercase tracking-[0.08em] text-[#faf5ee] transition hover:bg-[#a88350] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
+                                                    >
+                                                        Mua ngay
+                                                    </button>
+                                                </div>
                                             @else
                                                 <button
                                                     type="button"
