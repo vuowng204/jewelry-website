@@ -5,6 +5,9 @@
 @section('content')
     <section class="bg-[#fcfaf7] py-10 lg:py-14">
         <div class="mx-auto max-w-6xl px-5 lg:px-8">
+            @if ($errors->any())
+                <p role="alert" class="mb-5 rounded-md bg-rose-50 px-4 py-3 text-sm text-rose-800">{{ $errors->first() }}</p>
+            @endif
             <div class="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,476px)_1fr] lg:gap-12">
                 <div
                     class="flex flex-col gap-3"
@@ -127,30 +130,7 @@
                     @endif
 
                     <div class="flex flex-col gap-3 pt-2">
-                        @if ($product->stock > 0)
-                            <div class="grid grid-cols-2 gap-3">
-                                <button
-                                    type="button"
-                                    class="w-full border border-[#342821] bg-transparent px-4 py-3.5 text-center text-xs font-medium uppercase tracking-[0.12em] text-[#342821] transition hover:bg-[#342821] hover:text-[#faf5ee] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
-                                >
-                                    Thêm vào giỏ hàng
-                                </button>
-                                <button
-                                    type="button"
-                                    class="w-full bg-[#342821] px-4 py-3.5 text-center text-xs font-medium uppercase tracking-[0.12em] text-[#faf5ee] transition hover:bg-[#a88350] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
-                                >
-                                    Mua ngay
-                                </button>
-                            </div>
-                        @else
-                            <button
-                                type="button"
-                                disabled
-                                class="w-full cursor-not-allowed border border-[#dfd5c9] bg-transparent px-6 py-3.5 text-center text-xs font-medium uppercase tracking-[0.16em] text-[#9b8d82]"
-                            >
-                                Hết hàng
-                            </button>
-                        @endif
+                        <x-storefront-product-actions :product="$product" />
 
                         <a
                             href="{{ route('products.index', ['category' => $category->slug]) }}"
@@ -218,30 +198,7 @@
                                     </div>
 
                                     <div class="mt-auto pt-2.5">
-                                        @if ($relatedProduct->stock > 0)
-                                            <div class="grid grid-cols-2 gap-1.5">
-                                                <button
-                                                    type="button"
-                                                    class="w-full border border-[#342821] bg-transparent px-1 py-2 text-center text-[10px] font-medium uppercase tracking-[0.06em] text-[#342821] transition hover:bg-[#342821] hover:text-[#faf5ee] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
-                                                >
-                                                    Thêm giỏ hàng
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    class="w-full bg-[#342821] px-1 py-2 text-center text-[10px] font-medium uppercase tracking-[0.06em] text-[#faf5ee] transition hover:bg-[#a88350] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
-                                                >
-                                                    Mua ngay
-                                                </button>
-                                            </div>
-                                        @else
-                                            <button
-                                                type="button"
-                                                disabled
-                                                class="w-full cursor-not-allowed border border-[#dfd5c9] bg-transparent px-2 py-2 text-center text-[10px] font-medium uppercase tracking-[0.14em] text-[#9b8d82]"
-                                            >
-                                                Hết hàng
-                                            </button>
-                                        @endif
+                                        <x-storefront-product-actions :product="$relatedProduct" compact />
                                     </div>
                                 </div>
                             </article>

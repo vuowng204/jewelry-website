@@ -29,9 +29,9 @@
             <a class="flex h-9 w-9 items-center justify-center transition hover:text-white focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#e2cbb0]" href="{{ auth()->check() ? route('profile.edit') : route('login') }}" aria-label="Tài khoản" title="Tài khoản">
                 <x-storefront-icon name="user" class="h-5 w-5" />
             </a>
-            <span class="flex h-9 w-9 items-center justify-center" role="img" aria-label="Giỏ hàng" title="Giỏ hàng">
+            <a href="{{ route('cart.show') }}" class="flex h-9 w-9 items-center justify-center transition hover:text-white focus-visible:outline focus-visible:outline-1 focus-visible:outline-[#e2cbb0]" aria-label="Giỏ hàng" title="Giỏ hàng">
                 <x-storefront-icon name="shopping-cart" class="h-5 w-5" />
-            </span>
+            </a>
         </div>
     </div>
 

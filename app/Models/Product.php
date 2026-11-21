@@ -47,6 +47,11 @@ class Product extends Model
         return $query->where('is_active', true);
     }
 
+    public function canFulfill(int $quantity): bool
+    {
+        return $this->is_active && $this->category?->is_active && $quantity > 0 && $this->stock >= $quantity;
+    }
+
     protected function thumbnailUrl(): Attribute
     {
         return Attribute::get(function (): ?string {
