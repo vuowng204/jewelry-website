@@ -11,9 +11,6 @@ use Illuminate\Support\Collection;
 
 class ProductService
 {
-    /**
-     * @var array<string, array{label: string, min: int|null, max: int|null}>
-     */
     public const PRICE_RANGES = [
         'under-1m' => ['label' => 'Dưới 1.000.000đ', 'min' => null, 'max' => 1000000],
         '1m-3m' => ['label' => '1.000.000đ – 3.000.000đ', 'min' => 1000000, 'max' => 3000000],
@@ -21,9 +18,6 @@ class ProductService
         'over-5m' => ['label' => 'Trên 5.000.000đ', 'min' => 5000000, 'max' => null],
     ];
 
-    /**
-     * @var array<string, string>
-     */
     public const SORT_OPTIONS = [
         'default' => 'Mặc định',
         'price_asc' => 'Giá: Thấp đến cao',
@@ -32,15 +26,11 @@ class ProductService
 
     private const EFFECTIVE_PRICE_SQL = 'CASE WHEN sale_price IS NOT NULL AND sale_price > 0 AND sale_price < price THEN sale_price ELSE price END';
 
-    /**
-     * @param  array{category: string, price: list<string>, material: list<string>, q: string, sort: string}  $filters
-     * @param  EloquentCollection<int, Category>  $activeCategories
-     */
     public function list(
         array $filters,
         ?Category $activeCategory,
         EloquentCollection $activeCategories,
-        int $perPage = 3,
+        int $perPage = 8,
     ): Paginator {
         $effectivePriceSql = self::EFFECTIVE_PRICE_SQL;
 
@@ -119,10 +109,7 @@ class ProductService
         return $product;
     }
 
-    /**
-     * @return EloquentCollection<int, Product>
-     */
-    public function related(Category $category, Product $product, int $limit = 3): EloquentCollection
+    public function related(Category $category, Product $product, int $limit = 4): EloquentCollection
     {
         return Product::query()
             ->select(['id', 'category_id', 'name', 'slug', 'price', 'sale_price', 'stock', 'material', 'thumbnail'])
@@ -134,10 +121,6 @@ class ProductService
             ->get();
     }
 
-    /**
-     * @param  EloquentCollection<int, Category>  $activeCategories
-     * @return Collection<int, string>
-     */
     public function materials(EloquentCollection $activeCategories): Collection
     {
         return Product::query()

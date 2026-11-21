@@ -168,12 +168,13 @@
                     <h2 class="font-storefront-heading text-xl font-medium text-[#342821] sm:text-2xl">
                         Sản phẩm tương tự
                     </h2>
-                    <div class="mt-6 grid grid-cols-1 gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="mt-6 grid grid-cols-2 gap-x-5 gap-y-8 md:grid-cols-3 lg:grid-cols-4">
                         @foreach ($relatedProducts as $relatedProduct)
                             <article class="group flex flex-col">
                                 <a
                                     href="{{ route('products.show', [$category, $relatedProduct]) }}"
-                                    class="relative aspect-square w-full overflow-hidden bg-[#f4ece2]"
+                                    class="relative aspect-square w-full overflow-hidden bg-[#f4ece2] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
+                                    aria-label="Xem chi tiết {{ $relatedProduct->name }}"
                                 >
                                     @if ($relatedProduct->thumbnail_url)
                                         <img
@@ -184,28 +185,28 @@
                                         >
                                     @else
                                         <div class="flex h-full w-full items-center justify-center text-[#c5b39c]" aria-hidden="true">
-                                            <svg class="h-14 w-14" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1">
+                                            <svg class="h-10 w-10 sm:h-12 sm:w-12" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.1">
                                                 <path d="M5 10h22l-11 17L5 10Zm0 0 5-6h12l5 6M10 4l6 23 6-23M5 10h22" />
                                             </svg>
                                         </div>
                                     @endif
                                 </a>
 
-                                <div class="flex flex-1 flex-col gap-2 pt-4">
-                                    <p class="text-[11px] uppercase tracking-[0.14em] text-[#948374]">
+                                <div class="flex flex-1 flex-col gap-1.5 pt-3">
+                                    <p class="text-[10px] uppercase tracking-[0.14em] text-[#948374]">
                                         {{ $category->name }}
                                         @if ($relatedProduct->material)
                                             · {{ $relatedProduct->material }}
                                         @endif
                                     </p>
 
-                                    <h3 class="line-clamp-2 font-storefront-heading text-lg leading-snug text-[#342821]">
+                                    <h3 class="line-clamp-2 font-storefront-heading text-sm font-normal leading-snug text-[#342821] sm:text-base">
                                         <a href="{{ route('products.show', [$category, $relatedProduct]) }}" class="transition hover:text-[#a88350] focus-visible:outline-none focus-visible:underline">
                                             {{ $relatedProduct->name }}
                                         </a>
                                     </h3>
 
-                                    <div class="flex flex-wrap items-baseline gap-2.5">
+                                    <div class="flex flex-wrap items-baseline gap-2">
                                         <span class="text-sm font-medium tracking-wide text-[#9c733d]">
                                             {{ number_format($relatedProduct->display_price, 0, ',', '.') }}đ
                                         </span>
@@ -216,18 +217,18 @@
                                         @endif
                                     </div>
 
-                                    <div class="mt-auto pt-3">
+                                    <div class="mt-auto pt-2.5">
                                         @if ($relatedProduct->stock > 0)
-                                            <div class="grid grid-cols-2 gap-2">
+                                            <div class="grid grid-cols-2 gap-1.5">
                                                 <button
                                                     type="button"
-                                                    class="w-full border border-[#342821] bg-transparent px-2 py-2.5 text-center text-[11px] font-medium uppercase tracking-[0.08em] text-[#342821] transition hover:bg-[#342821] hover:text-[#faf5ee] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
+                                                    class="w-full border border-[#342821] bg-transparent px-1 py-2 text-center text-[10px] font-medium uppercase tracking-[0.06em] text-[#342821] transition hover:bg-[#342821] hover:text-[#faf5ee] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
                                                 >
                                                     Thêm giỏ hàng
                                                 </button>
                                                 <button
                                                     type="button"
-                                                    class="w-full bg-[#342821] px-2 py-2.5 text-center text-[11px] font-medium uppercase tracking-[0.08em] text-[#faf5ee] transition hover:bg-[#a88350] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
+                                                    class="w-full bg-[#342821] px-1 py-2 text-center text-[10px] font-medium uppercase tracking-[0.06em] text-[#faf5ee] transition hover:bg-[#a88350] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-[#a88350]"
                                                 >
                                                     Mua ngay
                                                 </button>
@@ -236,7 +237,7 @@
                                             <button
                                                 type="button"
                                                 disabled
-                                                class="w-full cursor-not-allowed border border-[#dfd5c9] bg-transparent px-4 py-2.5 text-center text-[11px] font-medium uppercase tracking-[0.14em] text-[#9b8d82]"
+                                                class="w-full cursor-not-allowed border border-[#dfd5c9] bg-transparent px-2 py-2 text-center text-[10px] font-medium uppercase tracking-[0.14em] text-[#9b8d82]"
                                             >
                                                 Hết hàng
                                             </button>
