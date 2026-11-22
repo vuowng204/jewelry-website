@@ -121,6 +121,19 @@ class ProductService
             ->get();
     }
 
+    public function featured(int $limit = 8): EloquentCollection
+    {
+        return Product::query()
+            ->select(['id', 'category_id', 'name', 'slug', 'price', 'sale_price', 'stock', 'material', 'thumbnail'])
+            ->with(['category:id,name,slug'])
+            ->active()
+            ->where('is_featured', true)
+            ->whereHas('category', fn (Builder $query): Builder => $query->active())
+            ->latest()
+            ->limit($limit)
+            ->get();
+    }
+
     public function materials(EloquentCollection $activeCategories): Collection
     {
         return Product::query()

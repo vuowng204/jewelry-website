@@ -3,17 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Home;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
+    public function __construct(
+        private ProductService $productService,
+    ) {}
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        //
-        return view('home.index');
+        return view('home.index', [
+            'featuredProducts' => $this->productService->featured(),
+        ]);
     }
 
     /**

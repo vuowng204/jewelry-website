@@ -6,7 +6,7 @@
     <title>@yield('title', 'Luna Jewelry')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="flex min-h-screen flex-col bg-white font-storefront text-[#342821] antialiased">
+<body class="flex min-h-screen flex-col bg-white font-storefront text-[#1c1714] antialiased">
     @include('partials.header')
 
     <main class="w-full flex-1" id="main-content">

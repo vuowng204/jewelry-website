@@ -7,6 +7,7 @@ use App\Enum\PaymentStatus;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -14,9 +15,6 @@ use Illuminate\Validation\ValidationException;
 
 class OrderService
 {
-    /**
-     * @return Collection<int, array{product: Product, quantity: int, unit_price: int, line_total: int}>
-     */
     public function quote(User $user, ?Product $product = null, bool $lockProducts = false): Collection
     {
         $quantities = $product === null
@@ -52,7 +50,6 @@ class OrderService
         });
     }
 
-    /** @param Collection<int, array{product: Product, quantity: int, unit_price: int, line_total: int}> $lines */
     public function quoteSignature(Collection $lines): string
     {
         return hash('sha256', json_encode(
@@ -62,10 +59,7 @@ class OrderService
         ));
     }
 
-    /**
-     * @param array{checkout_token: string, quote_signature: string, customer_name: string, customer_phone: string,
-     *     customer_address: string, customer_note?: string|null, payment_method: string} $data
-     */
+
     public function placeOrder(User $user, array $data, ?Product $product = null): Order
     {
         return DB::transaction(function () use ($user, $data, $product): Order {
@@ -122,5 +116,20 @@ class OrderService
 
             return $order;
         }, 3);
+    }
+
+    //Lấy đơn hàng ở profile user
+    public function recentForUser(User $user, int $limit = 5): EloquentCollection
+    {
+        return $user->orders()
+            ->select(['id', 'order_code', 'status', 'total_amount', 'created_at'])
+            ->latest()
+            ->limit($limit)
+            ->get();
+    }
+
+    public function countForUser(User $user): int
+    {
+        return $user->orders()->count();
     }
 }
