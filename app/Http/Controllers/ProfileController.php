@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Services\OrderService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,19 +12,27 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
+    public function __construct(
+        private OrderService $orderService,
+    ) {}
+
     public function edit(Request $request): View
     {
+        $user = $request->user();
+        $ordersLimit = max(5, min(50, $request->integer('orders_limit', 5)));
+
+        $orders = $this->orderService->recentForUser($user, $ordersLimit);
+        $totalOrders = $this->orderService->countForUser($user);
+
         return view('profile.edit', [
-            'user' => $request->user(),
+            'user' => $user,
+            'orders' => $orders,
+            'totalOrders' => $totalOrders,
+            'hasMoreOrders' => $totalOrders > $orders->count(),
+            'nextOrdersLimit' => $ordersLimit + 5,
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
@@ -37,9 +46,6 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    /**
-     * Delete the user's account.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [

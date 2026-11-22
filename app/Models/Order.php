@@ -2,18 +2,20 @@
 
 namespace App\Models;
 
+use Database\Factories\OrderFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    /** @use HasFactory<\Database\Factories\OrderFactory> */
+    /** @use HasFactory<OrderFactory> */
     use HasFactory;
+
     use SoftDeletes;
 
     protected $fillable = [
-     'order_code', 'user_id',
+        'order_code', 'user_id', 'checkout_token',
         'customer_name', 'customer_email', 'customer_phone',
         'customer_address', 'customer_note', 'discount_amount', 'coupon_code', 'shipping_fee',
         'total_amount', 'payment_method', 'payment_status', 'paid_at',
@@ -42,7 +44,7 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
-     public function getSubtotalAttribute(): int
+    public function getSubtotalAttribute(): int
     {
         return $this->items->sum('line_total');
     }
