@@ -2,13 +2,16 @@
     <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-4 px-5 py-4 lg:flex-nowrap lg:px-8">
         <div class="flex shrink-0 items-center gap-3">
             <span class="flex h-9 w-9 items-center justify-center border border-[#b58d4a] bg-white text-[#b58d4a]" aria-hidden="true">
-                <svg class="h-5 w-5" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3">
-                    <path d="M5 10h22l-11 17L5 10Zm0 0 5-6h12l5 6M10 4l6 23 6-23M5 10h22" />
-                </svg>
+                <a href="{{ route('home.index') }}">
+                    <img
+                        src="{{ asset('images/logo.png') }}"
+                        class="h-20 w-auto object-contain bg-transparent">
+                </a>
             </span>
-            <span class="flex flex-col leading-none">
+            <a class="flex flex-col leading-none" href="{{ route('home.index') }}"
+                @if (request()->routeIs('home.index')) aria-current="page" @endif ">
                 <span class="font-storefront-heading text-xl tracking-[0.14em] text-[#1f1d1a]">Luna Jewelry</span>
-            </span>
+            </a>
         </div>
 
         <form action="{{ route('products.index') }}" method="GET" class="order-last flex w-full min-w-0 items-center gap-2.5 border-b border-[#d4d4d4] pb-1.5 text-[#5c5854] transition focus-within:border-[#b58d4a] lg:order-none lg:max-w-md lg:flex-1" role="search">
@@ -18,8 +21,7 @@
                 name="q"
                 value="{{ request('q') }}"
                 placeholder="Tìm kiếm trang sức..."
-                aria-label="Tìm kiếm sản phẩm"
-            >
+                aria-label="Tìm kiếm sản phẩm">
             <button type="submit" class="flex items-center justify-center text-[#9e783a] transition hover:text-[#1f1d1a]" aria-label="Tìm kiếm">
                 <x-storefront-icon name="search" class="h-4 w-4 shrink-0" />
             </button>
@@ -41,12 +43,12 @@
                 class="border-b-2 py-3.5 font-medium transition {{ request()->routeIs('home.index') ? 'border-[#b58d4a] text-[#1f1d1a]' : 'border-transparent text-[#66625d] hover:text-[#1f1d1a]' }}"
                 href="{{ route('home.index') }}"
                 @if (request()->routeIs('home.index')) aria-current="page" @endif
-            >Trang chủ</a>
+                >Trang chủ</a>
             <a
                 class="border-b-2 py-3.5 font-medium transition {{ request()->routeIs('products.*') ? 'border-[#b58d4a] text-[#1f1d1a]' : 'border-transparent text-[#66625d] hover:text-[#1f1d1a]' }}"
                 href="{{ route('products.index') }}"
                 @if (request()->routeIs('products.*')) aria-current="page" @endif
-            >Sản phẩm</a>
+                >Sản phẩm</a>
         </nav>
     </div>
 </header>
